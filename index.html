@@ -16,14 +16,14 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8f0f2;--paper:#10191d;--card:#172329;--line:#2b3b43;--mute:#9ab0b7;--accent:#6bb9d3;--mark:#e8b93f}}
 :root[data-theme="dark"]{--ink:#e8f0f2;--paper:#10191d;--card:#172329;--line:#2b3b43;--mute:#9ab0b7;--accent:#6bb9d3;--mark:#e8b93f}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4rem)}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 1.05rem/1.6 var(--body)}
 main{max-width:46rem;margin:0 auto;padding:0 1.25rem 4rem}
 h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--mark);outline-offset:3px}
-header{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--line)}
+header{padding:3.5rem 0 1.8rem}
 h1{font-size:clamp(2rem,9vw,4.4rem);font-weight:700;letter-spacing:-.02em}
 .role{font-family:var(--head);font-size:1.25rem;font-weight:500;margin:.9rem 0 1.1rem;color:var(--accent)}
 .lead{max-width:36rem;margin:0}
@@ -37,6 +37,16 @@ h1{font-size:clamp(2rem,9vw,4.4rem);font-weight:700;letter-spacing:-.02em}
 .id{display:flex;align-items:center;gap:clamp(1rem,4vw,1.8rem);margin-bottom:1.2rem}
 .id .role{margin-bottom:0}
 .photo{flex:none;width:clamp(5.2rem,24vw,7.5rem);height:auto;aspect-ratio:193/230;object-fit:cover;border-radius:6px;border:3px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:.35rem;overflow-x:auto;margin:0 -1.25rem;padding:.55rem 1.25rem;background:var(--paper);border-bottom:1px solid var(--line);scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);padding:.45rem .95rem;border-radius:999px;border:1px solid transparent;font-weight:600;font-size:.97rem}
+.nav a:hover{border-color:var(--line)}
+.nav a.on{background:var(--ink);color:var(--paper)}
+.jump{margin:0 0 1.6rem}
+.jump a{text-decoration:none;color:var(--accent);font-weight:600}
+.up{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:20;width:2.9rem;height:2.9rem;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.up[hidden]{display:none}
 section{padding-top:3rem}
 h2{font-size:1.75rem;margin-bottom:1.4rem}
 .sub{color:var(--mute);margin:-.8rem 0 1.4rem}
@@ -58,7 +68,7 @@ h2{font-size:1.75rem;margin-bottom:1.4rem}
 .facts{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;list-style:none;padding:0;margin:1rem 0 .4rem;font-size:.95rem}
 .facts li{font-weight:600}
 details{margin-top:.9rem;border-top:1px solid var(--line);padding-top:.7rem}
-summary{cursor:pointer;font-weight:600;color:var(--accent);padding:.3rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--accent);padding:.75rem 0}
 details[open] summary{margin-bottom:.4rem}
 details h4{font-family:var(--head);font-size:1.02rem;margin:1rem 0 .25rem}
 details ul{margin:.2rem 0 0;padding-left:1.2rem}
@@ -98,6 +108,14 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
   <p class="contact"><a href="https://www.linkedin.com/in/bastien-huber-a338ab1a9/" rel="noopener">Profil LinkedIn</a></p>
 </header>
 
+<nav class="nav" aria-label="Rubriques de la page">
+  <a href="#parcours">Parcours</a>
+  <a href="#realisations">Réalisations</a>
+  <a href="#missions">Missions</a>
+  <a href="#competences">Compétences</a>
+  <a href="#projet">La suite</a>
+</nav>
+
 <section id="parcours">
   <h2>Parcours</h2>
   <ol class="route">
@@ -129,12 +147,17 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
   </ol>
 </section>
 
-<section id="memoires">
+<section id="realisations">
   <h2>3 réalisations</h2>
   <p class="sub">Contenus anonymisés : noms de prestataires, montants et données internes volontairement retirés.</p>
+  <ul class="chips jump" aria-label="Accès direct à chaque réalisation">
+    <li><a href="#r-bio">Biodéchets</a></li>
+    <li><a href="#r-lom">Flotte et loi LOM</a></li>
+    <li><a href="#r-stocks">Stocks et flux tendu</a></li>
+  </ul>
 
-  <article class="memo">
-    <p class="meta">Mémoire 2 · Année 2, soutenance 2026</p>
+  <article class="memo" id="r-bio">
+    <p class="meta">Mémoire de MBA, 2e année · soutenance 2026</p>
     <h3>Biodéchets : mettre en conformité 50 établissements tout en maîtrisant les coûts</h3>
     <p><strong>Question traitée :</strong> comment le service achats peut-il accompagner les établissements vers la conformité à la loi AGEC (tri à la source et valorisation des biodéchets) en alliant optimisation des coûts et qualité, dans des budgets contraints par les autorités de tarification ?</p>
     <p><strong>Résultat :</strong> une stratégie validée en comité de direction, qui aboutit à trois contrats-cadres mutualisés couvrant l’ensemble des sites producteurs. Le dispositif retenu coûte 31 % de moins par an que le recours systématique à un opérateur national unique.</p>
@@ -166,8 +189,8 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
     </details>
   </article>
 
-  <article class="memo">
-    <p class="meta">Mémoire 1 · Année 1, 2025</p>
+  <article class="memo" id="r-lom">
+    <p class="meta">Mémoire de MBA, 1re année · 2025</p>
     <h3>Loi LOM : aligner la flotte automobile d’une association décentralisée</h3>
     <p><strong>Question traitée :</strong> comment se mettre en conformité avec les quotas de renouvellement par des véhicules à faibles émissions et les obligations de recharge, alors que les premières échéances sont déjà dépassées ?</p>
     <p><strong>Résultat :</strong> un plan d’action centré sur un renouvellement progressif, un déploiement ciblé de bornes et un pilotage de la flotte centralisé au siège, engagé sur le terrain avec les directeurs d’établissements.</p>
@@ -198,8 +221,8 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
     </details>
   </article>
 
-  <article class="memo">
-    <p class="meta">Bachelor Business Developer · Icadémie, 2023</p>
+  <article class="memo" id="r-stocks">
+    <p class="meta">Mémoire de Bachelor Business Developer · Icadémie, 2023</p>
     <h3>Stocks dormants : passer au flux tendu pour libérer la trésorerie d’un réseau de boutiques</h3>
     <p><strong>Question traitée :</strong> comment consolider la croissance des boutiques Les 3 P’tis Cochons par l’application du juste-à-temps ?</p>
     <p><strong>Constat :</strong> aucun plan d’approvisionnement ni suivi des stocks, un logiciel de caisse non synchronisé avec les bons de livraison et un historique de ventes perdu après l’incendie d’un data center. Des surstocks immobilisaient la trésorerie et retardaient le paiement des fournisseurs.</p>
@@ -268,5 +291,32 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
 
 <footer>Portfolio présenté en complément de mon CV. Les mémoires complets sont confidentiels et peuvent être évoqués en entretien.</footer>
 </main>
+<button class="up" type="button" aria-label="Retour en haut de la page" hidden>↑</button>
+<script>
+(function(){
+  var nav=document.querySelector('.nav'),links=[].slice.call(nav.querySelectorAll('a')),
+      up=document.querySelector('.up'),alias={domaines:'missions'},cur='';
+  function mark(id){
+    if(id===cur)return;cur=id;
+    links.forEach(function(a){
+      var on=a.getAttribute('href')==='#'+id;
+      a.classList.toggle('on',on);
+      if(on){a.setAttribute('aria-current','true');nav.scrollTo({left:a.offsetLeft-(nav.clientWidth-a.offsetWidth)/2,behavior:'smooth'});}
+      else a.removeAttribute('aria-current');
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)mark(alias[e.target.id]||e.target.id);});
+    },{rootMargin:'-25% 0px -65% 0px'});
+    [].forEach.call(document.querySelectorAll('main section[id]'),function(s){io.observe(s);});
+  }
+  window.addEventListener('scroll',function(){
+    up.hidden=window.scrollY<700;
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)mark('projet');
+  },{passive:true});
+  up.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
 </body>
 </html>
