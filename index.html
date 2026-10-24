@@ -69,10 +69,6 @@ details[open] summary{margin-bottom:.4rem}
 details h4{font-family:var(--head);font-size:1.02rem;margin:1rem 0 .25rem}
 details ul{margin:.2rem 0 0;padding-left:1.2rem}
 details li{margin:.2rem 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
-.grid>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;box-shadow:var(--shadow)}
-.grid h3{font-size:1.05rem;margin-bottom:.25rem}
-.grid p{margin:0;font-size:.98rem;color:var(--mute)}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:0}
 .chips li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.3rem .85rem;font-size:.97rem}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.8rem}
@@ -80,10 +76,10 @@ details li{margin:.2rem 0}
 #projet .lead{max-width:none;padding:1.3rem 1.4rem;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:16px;background:var(--card);font-size:1.18rem;box-shadow:var(--shadow)}
 footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--mute);font-size:.93rem;text-align:center}
 @supports (animation-timeline:view()){
-  .memo,.route li,.grid>div,#projet .lead{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  .memo,.route li,#projet .lead{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
   @keyframes rise{from{opacity:0;transform:translateY(22px)}}
 }
-@media (prefers-reduced-motion:reduce){.memo,.route li,.grid>div,#projet .lead{animation:none}.memo{transition:none}*{scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){.memo,.route li,#projet .lead{animation:none}.memo{transition:none}*{scroll-behavior:auto!important}}
 .nb{white-space:nowrap}
 .xp li{min-width:0;overflow-wrap:break-word;hyphens:auto}
 @media (max-width:480px){
@@ -115,7 +111,6 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
 <nav class="nav" aria-label="Rubriques de la page">
   <a href="#parcours">Parcours</a>
   <a href="#realisations">Réalisations</a>
-  <a href="#missions">Missions</a>
   <a href="#competences">Compétences</a>
   <a href="#projet">La suite</a>
 </nav>
@@ -255,18 +250,6 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
   </article>
 </section>
 
-<section id="missions">
-  <h2>Missions au quotidien</h2>
-  <div class="grid">
-    <div><h3>Analyse des besoins</h3><p>Recueil des demandes des établissements et des pôles, identification des priorités.</p></div>
-    <div><h3>Sourcing et sélection</h3><p>Recherche de fournisseurs, études comparatives, mise à jour de la base fournisseurs.</p></div>
-    <div><h3>Contrats-cadres</h3><p>Rédaction, échanges avec les fournisseurs, intégration des établissements, contrôle du respect des contrats.</p></div>
-    <div><h3>Négociation</h3><p>Participation aux négociations avec les fournisseurs.</p></div>
-    <div><h3>Pilotage et reporting</h3><p>Suivi des indicateurs coût, qualité et délais, rapports mensuels pour la direction financière.</p></div>
-    <div><h3>Éthique et durabilité</h3><p>Veille sur le respect des politiques internes d’achats responsables.</p></div>
-  </div>
-</section>
-
 <section id="domaines">
   <h2>Familles d’achats traitées</h2>
   <ul class="chips"><li>Restauration collective</li><li>Biodéchets</li><li>Flotte automobile</li><li>Cartes carburant</li><li>Blanchisserie</li><li>Impression et copieurs</li><li>Énergie (gaz et électricité)</li><li>Produits d’incontinence</li><li>Petite épicerie</li></ul>
@@ -296,7 +279,7 @@ footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);col
 <button class="up" type="button" aria-label="Retour en haut de la page" hidden>↑</button>
 <script>
 (function(){
-  var nav=document.querySelector('.nav'),links=[].slice.call(nav.querySelectorAll('a')),up=document.querySelector('.up'),alias={domaines:'missions'},cur='';
+  var nav=document.querySelector('.nav'),links=[].slice.call(nav.querySelectorAll('a')),up=document.querySelector('.up'),alias={domaines:'competences'},cur='';
   function mark(id){
     if(id===cur)return;cur=id;
     links.forEach(function(a){
